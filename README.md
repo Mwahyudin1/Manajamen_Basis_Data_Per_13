@@ -319,4 +319,12 @@ VALUES
 
 - Melakukan report (laporan)<br>
 `Melihat total penjualan berdasarkan tanggal`
+```
+SELECT 
+    sale_date AS "Tanggal Penjualan",
+    SUM(sale_total) AS "Total Penjualan"
+FROM Sales
+GROUP BY sale_date
+ORDER BY sale_date DESC;
+```
 ![Imgur](https://i.imgur.com/DDQ0cUl.png)
