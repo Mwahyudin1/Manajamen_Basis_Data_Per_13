@@ -254,7 +254,6 @@ CREATE TABLE IF NOT EXISTS Inventory_Reorders (
     FOREIGN KEY (product_id) REFERENCES Products(product_id),
     FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id)
 );
-
 ```
 
 - Melakukan insert data ke dalam tabel<br>Berikut script insert data
@@ -328,3 +327,36 @@ GROUP BY sale_date
 ORDER BY sale_date DESC;
 ```
 ![Imgur](https://i.imgur.com/DDQ0cUl.png)
+
+`Melihat total penjualan berdasarkan produk`
+```
+SELECT p.product_name, SUM(si.quantity_sold) AS total_quantity_sold, SUM(si.quantity_sold * si.product_price) AS total_sales
+FROM Sale_Items si
+JOIN Products p ON si.product_id = p.product_id
+GROUP BY p.product_name
+ORDER BY total_sales DESC;
+```
+![Imgur](https://i.imgur.com/6yLXr90.png)
+
+`Melihat total pembelian per pelanggan`
+```
+SELECT c.customer_name, COUNT(s.sale_id) AS total_sales_count, SUM(s.sale_total) AS total_spent
+FROM Sales s
+JOIN Customers c ON s.customer_id = c.customer_id
+GROUP BY c.customer_name
+ORDER BY total_spent DESC;
+```
+![Imgur](https://i.imgur.com/JQkWGGo.png)
+
+`Melihat produk yang paling banyak terjual`
+```
+SELECT p.product_name, SUM(si.quantity_sold) AS total_quantity_sold
+FROM Sale_Items si
+JOIN Products p ON si.product_id = p.product_id
+GROUP BY p.product_name
+ORDER BY total_quantity_sold DESC
+LIMIT 5;
+```
+![Imgur](https://i.imgur.com/kwDw0Z0.png)
+
+----
