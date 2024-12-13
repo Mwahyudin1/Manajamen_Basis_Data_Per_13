@@ -1,1 +1,2 @@
-# Manajamen_Basis_Data_Per_13
+# Manajamen Basis Data Pertemuan 13 Praktikum
+`nama: M Wahyudin Ardiansyah`
